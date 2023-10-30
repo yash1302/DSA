@@ -5,7 +5,7 @@ bool sorted(int arr[],int n)
 {
     for(int i=0;i<n;i++)
     {
-    if(arr[i]>arr[i+1])
+    if(arr[i]<arr[i+1])
     {
         return false;
     }
@@ -17,7 +17,7 @@ int main()
     int arr[] = {1,2,3,4};
     int n = 4;
     bool ans = sorted(arr,n);
-    if(ans == true)
+    if(ans == false)
     {
         cout<<"sorted"<<endl;
     }
