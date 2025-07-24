@@ -157,10 +157,60 @@ int searchInInfiniteArray(int* arr,int x){
     return binarySearch(arr,(i/2)+1,i-1,x);
 }
 
+int searchInSortedRotatedArray(int* arr,int size,int x){
+    int low = 0,high = size-1;
+
+    while(low<=high){
+        int mid = (low+high)/2;
+                // cout<<mid<<endl;
+        if(arr[mid]==x){
+            return mid;
+        }
+
+        else if(x<arr[mid]){
+            if(x>=arr[low] && x < arr[mid] ){
+                high = mid-1;
+            }
+            else{
+                low = mid+1;
+            }
+        }
+        else{
+            if(x>arr[mid] && x<=arr[high]){
+                low = mid+1;
+            }
+            else{
+                high = mid-1;
+            }
+        }
+    }
+    return -1;
+}
+
+int peakElementInArray(int* arr,int size){
+    int low = 0,high = size-1;
+
+    while(low<=high){
+        int mid = (low+high)/2;
+        // cout<<mid<<endl;
+
+        if((mid == 0 || arr[mid-1]<=arr[mid]) && (mid == size-1 || arr[mid+1]<=arr[mid])){
+            return mid;
+        }
+        if(mid>0 && arr[mid-1]>=arr[mid]){
+            high = mid-1;
+        }
+        else{
+            low = mid+1;
+        }
+    }
+    return -1;
+}
+
 int main()
 {
-    int arr[] = {1,2,5,9,20,25,60,70,75,100,130,150};
+    int arr[] = {5,20,40,30,20,50,60};
     int size = sizeof(arr)/sizeof(arr[0]);
-    cout<<"square root: "<<searchInInfiniteArray(arr,25)<<endl;
+    cout<<"element: "<<peakElementInArray(arr,size)<<endl;
     return 0;
 }
