@@ -21,10 +21,43 @@ void bubbleSort(int* arr,int n){
     }
 }
 
+void selectionSort(int* arr,int n){
+    
+    for(int i=0;i<n;i++){
+        int swapPosition = i;
+        for(int j=i;j<n;j++){
+            if(arr[j]<arr[swapPosition]){
+                swapPosition = j;
+            }
+        }
+        swap(arr[swapPosition],arr[i]);
+    }
+
+    for(int i=0;i<n;i++){
+        cout<<arr[i]<<" ";
+    }
+}
+
+void insertionSort(int* arr,int n){
+    for(int i=1;i<n;i++){
+        int key = arr[i];
+        int j = i-1;
+        while(j>=0 && arr[j]>key){
+            arr[j+1] = arr[j];
+            j--;
+        }
+        arr[j+1] = key;
+    }
+
+    for(int i=0;i<n;i++){
+        cout<<arr[i]<<" ";
+    }
+}
+
 int main()
 {
-    int arr[] = {2,10,8,7};
+    int arr[] = {7,4,2,3,6};
     int size = sizeof(arr)/sizeof(arr[0]);
-    bubbleSort(arr,size);
+    insertionSort(arr,size);
     return 0;
 }
