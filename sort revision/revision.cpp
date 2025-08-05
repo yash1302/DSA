@@ -290,10 +290,35 @@ void lamutoPartition(int* arr,int size){
 }
 
 
+int hoaresPartition(int* arr,int low,int high){
+    int i = low-1,j = high+1;
+    int pivot = arr[low];
+
+    while(true){
+        do{
+            i++;
+        }while(arr[i]<pivot);
+
+        do{
+            j--;
+        }while(arr[j]>pivot);
+
+        if(i>=j){
+            return j;
+        };
+        swap(arr[i],arr[j]);
+    }
+
+    for(int i=0;i<=high;i++){
+        cout<<arr[i]<<" ";
+    }
+}
+
+
 int main()
 {
     int arr[] = {2,4,1,3,5};
     int size1 = sizeof(arr)/sizeof(arr[0]);
-    lamutoPartition(arr,size1-1);
+    cout<<hoaresPartition(arr,0,size1-1);
     return 0;
 }
